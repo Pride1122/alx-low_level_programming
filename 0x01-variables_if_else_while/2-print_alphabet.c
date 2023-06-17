@@ -1,19 +1,19 @@
 #include <stdio.h>
 /**
- * main - Entry point
- * Return: Always 0 (success)
- */
-
+*main - program prints in lowercase followed by new line
+*Return: 0 (You got it)
+*/
 int main(void)
 {
-	char c;
-
-	c = 'a';
-	while
-	        (c <= 'z') {
-			putchar(c);
-			c++;
-		}
-        putchar('\n');
-	return (0);
-}		
+char ch = 'a';
+while (ch <= 'z')
+{
+if (ch != 'e' && ch != 'q')
+{
+putchar(ch);
+}
+ch++;
+}
+putchar('\n');
+return (0);
+}
