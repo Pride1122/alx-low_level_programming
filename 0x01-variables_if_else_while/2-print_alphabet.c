@@ -1,18 +1,15 @@
 #include <stdio.h>
 /**
-*main - program prints in lowercase followed by new line
-*Return: 0 (You got it)
+* main - prints the alphabet in lowercase,
+* followed by a new line
+* Return: Always 0 (Success)
 */
 int main(void)
 {
-char ch = 'a';
-while (ch <= 'z')
-{
-if (ch != 'e' && ch != 'q')
+char ch;
+for (ch = 'a'; ch <= 'z'; ch++)
 {
 putchar(ch);
-}
-ch++;
 }
 putchar('\n');
 return (0);
