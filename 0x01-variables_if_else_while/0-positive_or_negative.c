@@ -1,4 +1,4 @@
-1 #include <stdlib.h>
+  1 #include <stdlib.h>
   2 #include <time.h>
   3 #include <stdio.h>
   4 /**
@@ -6,7 +6,7 @@
   6 *Return: 0 (Successfully)
   7 */
   8 int main(void)
-  9 {
+  9 { 
  10         int n;
  11
  12         srand(time(0));
