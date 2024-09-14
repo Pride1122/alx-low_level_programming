@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 /**
- * main - generate a key depending on a username for crackme5
+ * main - generate a main function
  * @argc: number of arguments passed
  * @argv: arguments passed to main
  *
@@ -11,35 +11,43 @@
  */
 int main(int argc, char *argv[])
 {
-	unsigned int i, b;
-	size_t len, add;
-	char *l = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
-	char p[7] = "      ";
+	unsigned int randomValue = 0;
+	unsigned int squaredSum = 0;
+	unsigned int product = 1;
+	unsigned int sum = 0;
+	size_t usernameLength = strlen(argv[1]);
+	unsigned char maxChar = argv[1][0];
+	unsigned int i;
+	char *charset = "A-CHRDw87lNS0E9B2Tib";
+	char key[7] = "      ";
 
 	if (argc != 2)
 	{
-		printf("Correct usage: ./keygen5 username\n");
+		printf("Correct usage: %s username\n", argv[0]);
 		return (1);
 	}
-	len = strlen(argv[1]);
-	p[0] = l[(len ^ 59) & 63];
-	for (i = 0, add = 0; i < len; i++)
-		add += argv[1][i];
-	p[1] = l[(add ^ 79) & 63];
-	for (i = 0, b = 1; i < len; i++)
-		b *= argv[1][i];
-	p[2] = l[(b ^ 85) & 63];
-	for (b = argv[1][0], i = 0; i < len; i++)
-		if ((char)b <= argv[1][i])
-			b = argv[1][i];
-	srand(b ^ 14);
-	p[3] = l[rand() & 63];
-	for (b = 0, i = 0; i < len; i++)
-		b += argv[1][i] * argv[1][i];
-	p[4] = l[(b ^ 239) & 63];
-	for (b = 0, i = 0; (char)i < argv[1][0]; i++)
-		b = rand();
-	p[5] = l[(b ^ 229) & 63];
-	printf("%s\n", p);
+	key[0] = charset[(usernameLength ^ 59) & 63];
+
+	for (i = 0; i < usernameLength; i++)
+		sum += argv[1][i];
+	key[1] = charset[(sum ^ 79) & 63];
+
+	for (i = 0; i < usernameLength; i++)
+		product *= argv[1][i];
+	key[2] = charset[(product ^ 85) & 63];
+
+	for (i = 0; i < usernameLength; i++)
+		if (argv[1][i] >= maxChar)
+			maxChar = argv[1][i];
+	srand(maxChar ^ 14);
+	key[3] = charset[rand() & 63];
+
+	for (i = 0; i < usernameLength; i++)
+		squaredSum += argv[1][i] * argv[1][i];
+	key[4] = charset[(squaredSum ^ 239) & 63];
+	for (i = 0; (unsigned char)i < argv[1][0]; i++)
+		randomValue = rand();
+	key[5] = charset[(randomValue ^ 229) & 63];
+	printf("%s\n", key);
 	return (0);
 }
